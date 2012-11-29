@@ -1,0 +1,117 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: black;
+}
+
+@disappear-duration: 1s;
+
+.shiftingtiles {
+	height: 900px;
+	width: 1440px;
+	overflow: hidden;
+
+	.image {
+		background-size: cover;
+		background-image: url("NatGeo04.jpg");
+	}
+
+	.row {
+		position: relative;
+		width: 200%;
+		height: 50%;
+
+		.single, .dual {
+			background: white;
+			float: left;
+			height: 100%;
+			box-sizing: border-box;
+			border: 5px solid black;
+		}
+		.single { 
+			width: 20%; 
+			.image();
+			-webkit-transform-origin: 0 100%;
+		}
+		.dual { 
+			width: 10%;
+			-webkit-transform-origin: 0 50%;
+			> div {
+				width: 100%;
+				height: 50%;
+				box-sizing: border-box;
+				border: solid black;
+				border-width: 10px 0 0 0;
+				.image();
+			}
+			> div:first-child {
+				border-top: 0;
+			}
+		}
+
+		&:not(:first-child) {
+			margin-left: -100%;
+			
+			.single, .dual {
+				float: right;
+			}
+			.single { -webkit-transform-origin: 100% 0; }
+			.dual { -webkit-transform-origin: 100% 50%; }
+		}
+	}
+}
+
+.single:hover {
+	-webkit-animation: disappear-single @disappear-duration;
+	-webkit-transform-origin: 100% 0;
+	-webkit-animation-fill-mode:forwards;
+}
+.dual:hover {
+	-webkit-animation: disappear-dual @disappear-duration;
+	-webkit-transform-origin: 0 50%;
+	-webkit-animation-fill-mode:forwards;
+}
+.dual:hover + *, .single:hover + * {
+	-webkit-animation: bounce @disappear-duration;
+}
+.dual:hover + * + *, .single:hover + * + * {
+	-webkit-animation: bounce @disappear-duration;
+	-webkit-animation-delay: .3s;
+}
+.dual:hover + * + * + *, .single:hover + * + * + * {
+	-webkit-animation: bounce @disappear-duration;
+	-webkit-animation-delay: .6s;
+}
+
+.disappear-frames(@origwidth) {
+	0%   { -webkit-transform: scale(1); }
+	20%  { width: @origwidth; -webkit-transform: scale(.01); }
+	50%  { -webkit-transform: scale(0); width: 0%; }
+	100% { -webkit-transform: scale(0); width: 0%; border-width: 0; }
+}
+.bounce {
+	50%  { margin: 0; }
+	60% { margin: 0 15px; }
+	70% { margin: 0; }
+	85% { margin: 0 10px; }
+	95% { margin: 0; }
+	97% { margin: 0 5px; }
+	100% { margin: 0; }
+}
+@-webkit-keyframes disappear-single {.disappear-frames(20%); }
+@-moz-keyframes disappear-single {.disappear-frames(20%); }
+@-ms-keyframes disappear-single {.disappear-frames(20%); }
+@-o-keyframes disappear-single {.disappear-frames(20%); }
+@keyframes disappear-single {.disappear-frames(20%); }
+
+@-webkit-keyframes disappear-dual {.disappear-frames(10%);}
+@-moz-keyframes disappear-dual {.disappear-frames(10%);}
+@-ms-keyframes disappear-dual {.disappear-frames(10%);}
+@-o-keyframes disappear-dual {.disappear-frames(10%);}
+@keyframes disappear-dual {.disappear-frames(10%);}
+
+@-webkit-keyframes bounce {.bounce;}
+@-moz-keyframes bounce {.bounce;}
+@-ms-keyframes bounce {.bounce;}
+@-o-keyframes bounce {.bounce;}
+@keyframes bounce {.bounce;}
