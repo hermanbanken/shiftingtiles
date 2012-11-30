@@ -61,26 +61,27 @@ body {
 	}
 }
 
-.single:hover {
+.single.disappear {
 	-webkit-animation: disappear-single @disappear-duration;
 	-webkit-transform-origin: 100% 0;
 	-webkit-animation-fill-mode:forwards;
 }
-.dual:hover {
+.dual.disappear {
 	-webkit-animation: disappear-dual @disappear-duration;
 	-webkit-transform-origin: 0 50%;
 	-webkit-animation-fill-mode:forwards;
 }
-.dual:hover + *, .single:hover + * {
-	-webkit-animation: bounce @disappear-duration;
+.dual.disappear + *, .single.disappear + * {
+	-webkit-animation: bounce (@disappear-duration/2);
+	-webkit-animation-delay: (@disappear-duration/2s);
 }
-.dual:hover + * + *, .single:hover + * + * {
-	-webkit-animation: bounce @disappear-duration;
-	-webkit-animation-delay: .3s;
+.dual.disappear + * + *, .single.disappear + * + * {
+	-webkit-animation: bounce (@disappear-duration/2);
+	-webkit-animation-delay: (@disappear-duration/2 + .05s);
 }
-.dual:hover + * + * + *, .single:hover + * + * + * {
-	-webkit-animation: bounce @disappear-duration;
-	-webkit-animation-delay: .6s;
+.dual.disappear + * + * + *, .single.disappear + * + * + * {
+	-webkit-animation: bounce (@disappear-duration/2);
+	-webkit-animation-delay: (@disappear-duration/2 + .1s);
 }
 
 .disappear-frames(@origwidth) {
@@ -90,12 +91,12 @@ body {
 	100% { -webkit-transform: scale(0); width: 0%; border-width: 0; }
 }
 .bounce {
-	50%  { margin: 0; }
-	60% { margin: 0 15px; }
-	70% { margin: 0; }
-	85% { margin: 0 10px; }
-	95% { margin: 0; }
-	97% { margin: 0 5px; }
+	0%  { margin: 0; }
+	20% { margin: 0 15px; }
+	40% { margin: 0; }
+	70% { margin: 0 10px; }
+	90% { margin: 0; }
+	94% { margin: 0 5px; }
 	100% { margin: 0; }
 }
 @-webkit-keyframes disappear-single {.disappear-frames(20%); }
