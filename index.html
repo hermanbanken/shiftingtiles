@@ -4,16 +4,17 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/shiftingtiles.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/shiftingtiles.css" media="print" />
 	<style>
 	.gallery {
 		width: 100%;
 		height: 300px;
 		border: 1px solid black;
 		margin: -1px;
+		background: black;
 	}
 	</style>
     <script src="master/jquery-1.8.3.js"></script>
@@ -46,6 +47,14 @@
 
 <p>The screensavers available on Mac OS X Mountain Lion are so beautifull, they shouldn't be for Mac users only. When developing a system for a tv in a public room, I decided to display the photographs in this fashion. To share this with the world I made it available for contribution and usage on Github. To make this some sort of achievement I tried to use as much CSS3 and as less jQuery stuff as possible, therefore showing the capabilities of CSS3 and HTML5.</p>
 
+<p>How it looks:
+
+<div class='gallery'></div>
+<script>
+	$(".gallery").shiftingtiles(["NatGeo04-small.jpg","NatGeo04-small.jpg","NatGeo04-small.jpg"]);
+</script>
+</p>
+
 <h3>Usage</h3>
 
 <p>To use the Shifting Tiles gallery you should clone the repository</p>
@@ -63,11 +72,6 @@ $ git clone https://github.com/hermanbanken/shiftingtiles.git shiftingtiles
     $("#elem").shiftingtiles(photoSource());
 &lt;/script&gt;
 </code></pre>
-
-<div class='gallery'></div>
-<script>
-	$(".gallery").shiftingtiles(["master/NatGeo04.jpg","master/NatGeo04.jpg","master/NatGeo04.jpg"]);
-</script>
 
 <h3>Authors and Contributors</h3>
 
