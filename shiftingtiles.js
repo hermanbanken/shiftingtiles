@@ -15,7 +15,7 @@
       $(this).parent().addClass("left").removeClass("leave");
     });
     where.on("webkitAnimationEnd", ".disappear", function(){
-      console.log("Animation end, removing node",this);
+      //console.log("Animation end, removing node",this);
       // $(this).  this wasn't working, why? no idea
       $(this).css("display", "none").remove();
       where.trigger("animate-after");
@@ -31,7 +31,7 @@
         images.bottom = 0;
 
       var index = images.bottom + Math.floor((images.length - images.bottom) * Math.random());
-      console.log(index, 1, images.bottom, images);
+      //console.log(index, 1, images.bottom, images);
       var one = images.splice(index, 1)[0];
       images.unshift(one);
 
@@ -48,8 +48,8 @@
   	// Setup
   	function setup(where){
   	 	where.addClass("shiftingtiles");
-	  	where.append("<div class='row'><div class='single'></div><div class='single'></div><div class='dual'><div></div><div></div></div></div>");
-	  	where.append("<div class='row'><div class='single'></div><div class='single'></div><div class='dual'><div></div><div></div></div></div>");
+	  	where.prepend("<div class='row'><div class='single'></div><div class='single'></div><div class='dual'><div></div><div></div></div></div>");
+	  	where.prepend("<div class='row'><div class='single'></div><div class='single'></div><div class='dual'><div></div><div></div></div></div>");
       where.append("<div class='loading'>Loading Photos...</div>");
 
       where.find(".single, .dual > div").each(addImage);
@@ -64,7 +64,7 @@
     // Figure out single or dual and add images
     function addImage(index, node){
       node = $(node);
-      console.log(node);
+      //console.log(node);
       // Load new images
       if(node.hasClass("single") || node.parent(".dual").size() > 0){
         image(node);
@@ -93,7 +93,7 @@
   	}
 
   	$(document.body).keyup(function(e){
-      console.log("Key up");
+      //console.log("Key up");
   		if(e.keyCode == 32) frame();
       if(e.keyCode == 38) $(".shiftingtiles").toggleClass("leave");
   	});
