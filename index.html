@@ -11,10 +11,17 @@
 	<style>
 	.gallery {
 		width: 100%;
-		height: 300px;
-		border: 1px solid black;
-		margin: -1px;
+		min-height: 300px;
+	}
+	.gallery.shiftingtiles { 
 		background: black;
+		margin: -1px;
+		border: 1px solid black; 
+		height: 300px;
+		box-shadow: 0 0 20px black;
+	}
+	.gallery.shiftingtiles img {
+		display: none;
 	}
 	</style>
     <script src="master/jquery-1.8.3.js"></script>
@@ -49,7 +56,7 @@
 
 <p>How it looks:
 
-<div class='gallery'></div>
+<div class='gallery'><img src="images/preview.png" /></div>
 <script>
 	$(".gallery").shiftingtiles(["NatGeo04-small.jpg","NatGeo04-small.jpg","NatGeo04-small.jpg"]);
 </script>
