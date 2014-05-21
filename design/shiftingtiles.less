@@ -104,19 +104,22 @@ body {
     animation-fill-mode: forwards;
 }
 
-.dual.disappear + *, .single.disappear + * {
-    animation: bounce (@disappear-duration/2);
-    animation-delay: (@disappear-duration/2s);
+.dual.disappear + *,
+.single.disappear + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2s );
 }
 
-.dual.disappear + * + *, .single.disappear + * + * {
-    animation: bounce (@disappear-duration/2);
-    animation-delay: (@disappear-duration/2 + .05s);
+.dual.disappear + * + *,
+.single.disappear + * + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2 + .05s );
 }
 
-.dual.disappear + * + * + *, .single.disappear + * + * + * {
-    animation: bounce (@disappear-duration/2);
-    animation-delay: (@disappear-duration/2 + .1s);
+.dual.disappear + * + * + *,
+.single.disappear + * + * + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2 + .1s );
 }
 
 .shiftingtiles.leave .row {
@@ -134,7 +137,7 @@ body {
     }
 }
 
-.disappear-frames(@origwidth) {
+.disappear-frames( @origwidth ) {
     0% {
         transform: scale(1);
     }
@@ -155,14 +158,14 @@ body {
 
 .leave(@dir) {
     0% {
-        transform: translate3d(0, 0, 0);
+        transform: translate3d( 0, 0, 0 );
     }
     99% {
-        transform: translate3d((@dir * 1920px), 0, 0);
+        transform: translate3d( ( @dir * 1920px ), 0, 0);
         display: block;
     }
     100% {
-        transform: translate3d((@dir * 1920px), 0, 0);
+        transform: translate3d( ( @dir * 1920px ), 0, 0);
         display: none;
     }
 }
