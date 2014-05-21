@@ -1,5 +1,5 @@
 (function( $ ) {
-
+    "use strict";
     $.fn.shiftingtiles = function( images, options ) {
         var timeout,
             where = this;
