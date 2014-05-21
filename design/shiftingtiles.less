@@ -1,0 +1,211 @@
+@disappear-duration: 1s;
+@border-width: 5px;
+@background-color: #000;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: @background-color;
+}
+
+.shiftingtiles {
+    height: 100%;
+    overflow: hidden;
+
+    .image {
+        background-size: cover;
+        background-position: center;
+    }
+
+    & > .loading {
+        display: none;
+        position: absolute;
+        line-height: 1080px;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: @background-color;
+        color: white;
+    }
+
+    & > .row {
+        position: relative;
+        @extra-width : @border-width * 4;
+        width: e( "calc( 200% + @{extra-width} )" );
+        height: e( "calc( 50% + @{border-width} )" );
+        margin: -@border-width 0 0 -@border-width;
+
+        .single, .dual {
+            background: white;
+            float: left;
+            height: 100%;
+            box-sizing: border-box;
+            border: @border-width solid @background-color;
+        }
+
+        .single {
+            width: 20%;
+            .image();
+            transform-origin: 0 100%;
+        }
+
+        .dual {
+            width: 10%;
+            transform-origin: 0 50%;
+
+            > div {
+                width: 100%;
+                height: 50%;
+                box-sizing: border-box;
+                border: solid @background-color;
+                border-width: ( @border-width * 2 ) 0 0 0;
+                .image();
+            }
+
+            > div:first-child {
+                border-top: 0;
+            }
+        }
+
+        &:not(:first-child) {
+            @extra-width : 3 * @border-width;
+            margin-left: e( "calc( -100% - @{extra-width} )" );
+
+            .single, .dual {
+                float: right;
+            }
+            .single {
+                transform-origin: 100% 0;
+            }
+            .dual {
+                transform-origin: 100% 50%;
+            }
+        }
+    }
+}
+
+.single.disappear {
+    animation: disappear-single @disappear-duration;
+    transform-origin: 100% 0;
+    animation-fill-mode: forwards;
+}
+
+.dual.disappear {
+    animation: disappear-dual @disappear-duration;
+    transform-origin: 0 50%;
+    animation-fill-mode: forwards;
+}
+
+.dual.disappear + *,
+.single.disappear + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2s );
+}
+
+.dual.disappear + * + *,
+.single.disappear + * + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2 + .05s );
+}
+
+.dual.disappear + * + * + *,
+.single.disappear + * + * + * {
+    animation: bounce ( @disappear-duration / 2 );
+    animation-delay: ( @disappear-duration / 2 + .1s );
+}
+
+.shiftingtiles.leave .row {
+    animation: leave-r 1s;
+    animation-fill-mode: forwards;
+
+    &:first-child {
+        animation: leave-l 1.5s;
+    }
+}
+
+.shiftingtiles.left .row {
+    > * {
+        display: none;
+    }
+}
+
+.disappear-frames( @origwidth ) {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        width: @origwidth;
+        transform: scale(.01);
+    }
+    50% {
+        transform: scale(0);
+        width: 0%;
+    }
+    100% {
+        transform: scale(0);
+        width: 0%;
+        border-width: 0;
+    }
+}
+
+.leave(@dir) {
+    0% {
+        transform: translate3d( 0, 0, 0 );
+    }
+    99% {
+        transform: translate3d( ( @dir * 1920px ), 0, 0);
+        display: block;
+    }
+    100% {
+        transform: translate3d( ( @dir * 1920px ), 0, 0);
+        display: none;
+    }
+}
+
+@keyframes disappear-single {
+    .disappear-frames(20%);
+}
+
+@keyframes disappear-dual {
+    .disappear-frames(10%);
+}
+
+@keyframes leave-l {
+    .leave(1);
+}
+
+@keyframes leave-r {
+    .leave(-1);
+}
+
+@keyframes bounce {
+    0% {
+        margin: 0;
+    }
+    20% {
+        margin: 0 10px;
+    }
+    40% {
+        margin: 0;
+    }
+    70% {
+        margin: 0 5px;
+    }
+    90% {
+        margin: 0;
+    }
+    94% {
+        margin: 0 3px;
+    }
+    100% {
+        margin: 0;
+    }
+}
