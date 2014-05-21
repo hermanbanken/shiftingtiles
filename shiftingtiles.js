@@ -35,7 +35,7 @@
 
             images.bottom++;
 
-            if( images.bottom == images.length ) {
+            if( images.bottom === images.length ) {
                 images.bottom = 0;
                 where.trigger( "galleryrestart" );
             }
