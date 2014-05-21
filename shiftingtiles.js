@@ -98,13 +98,15 @@
 
 if( !Array.prototype.reduce ) {
     Array.prototype.reduce = function reduce( accumulator ) {
+        "use strict";
         if( this === null || this === undefined ) {
             throw new TypeError( "Object is null or undefined" );
         }
-        var i = 0, l = this.length >> 0, curr;
+        var i = 0,
+            l = this.length,
+            curr;
 
-        if( typeof accumulator !== "function" ) // ES5 : "If IsCallable(callbackfn) is false, throw a TypeError exception."
-        {
+        if( typeof accumulator !== "function" ) {
             throw new TypeError( "First argument is not callable" );
         }
 
