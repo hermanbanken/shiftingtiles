@@ -1,5 +1,6 @@
 @disappear-duration: 1s;
 @border-width: 5px;
+@background-color: #000;
 
 html,
 body {
@@ -9,7 +10,7 @@ body {
 body {
     margin: 0;
     padding: 0;
-    background: black;
+    background-color: @background-color;
 }
 
 .shiftingtiles {
@@ -31,7 +32,7 @@ body {
         top: 0;
         left: 0;
         z-index: 100;
-        background: black;
+        background-color: @background-color;
         color: white;
     }
 
@@ -47,7 +48,7 @@ body {
             float: left;
             height: 100%;
             box-sizing: border-box;
-            border: @border-width  solid black;
+            border: @border-width solid @background-color;
         }
 
         .single {
@@ -64,7 +65,7 @@ body {
                 width: 100%;
                 height: 50%;
                 box-sizing: border-box;
-                border: solid black;
+                border: solid @background-color;
                 border-width: ( @border-width * 2 ) 0 0 0;
                 .image();
             }
