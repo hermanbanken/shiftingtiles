@@ -79,7 +79,7 @@
         function frame() {
             clearTimeout( timeout );
             var boxes = where.find( ".single:not(:last-child), .dual:not(:last-child)" );
-            var disappear = $( boxes.get( ~~(Math.random() * boxes.size()) ) );
+            var disappear = $( boxes.get( Math.floor( Math.random() * boxes.size() ) ) );
 
             where.trigger( "animate-before", disappear );
 
