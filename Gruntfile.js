@@ -10,18 +10,25 @@ module.exports = function(grunt) {
         less : {
             development: {
                 options: {
-                    paths: [ "design" ]
+                    paths: [ 'design' ]
                 },
                 files: {
-                    "design/shiftingtiles.css": "design/shiftingtiles.less"
+                    'design/shiftingtiles.css' : 'design/shiftingtiles.less'
 
                 }
+            }
+        },
+        cssmin : {
+            default : {
+                src : 'design/shiftingtiles.css',
+                dest : 'design/shiftingtiles.css'
             }
         }
     });
 
     grunt.loadNpmTasks( 'grunt-autoprefixer' );
     grunt.loadNpmTasks( 'grunt-contrib-less' );
+    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 
-    grunt.registerTask( 'default', [ 'less', 'autoprefixer' ] );
+    grunt.registerTask( 'default', [ 'less', 'autoprefixer', 'cssmin' ] );
 };
