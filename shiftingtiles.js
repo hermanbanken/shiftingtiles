@@ -1,14 +1,12 @@
 (function( $ ) {
 
     $.fn.shiftingtiles = function( images, options ) {
+        var timeout,
+            where = this;
 
-        // Variables
-        var options = $.extend( {
-            dummy_prop: function() {
-            },
-            dummy_prop2: true,
+        $.extend( {
             photosource: images
-        }, options ), timeout, where = this;
+        }, options );
 
         where.on( "animationend webkitAnimationEnd oanimationend MSAnimationEnd", ".leave > .row", function() {
             $( this ).parent().addClass( "left" ).removeClass( "leave" );
