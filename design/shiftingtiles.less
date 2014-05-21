@@ -1,4 +1,10 @@
 @disappear-duration: 1s;
+@border-width: 5px;
+
+html,
+body {
+    height: 100%;
+}
 
 body {
     margin: 0;
@@ -7,8 +13,7 @@ body {
 }
 
 .shiftingtiles {
-    height: 900px;
-    width: 1440px;
+    height: 100%;
     overflow: hidden;
 
     .image {
@@ -31,22 +36,25 @@ body {
 
     & > .row {
         position: relative;
-        width: 200%;
-        height: 50%;
-        margin: 0 0;
+        @extra-width : @border-width * 4;
+        width: e( "calc( 200% + @{extra-width} )" );
+        height: e( "calc( 50% + @{border-width} )" );
+        margin: -@border-width 0 0 -@border-width;
 
         .single, .dual {
             background: white;
             float: left;
             height: 100%;
             box-sizing: border-box;
-            border: 5px solid black;
+            border: @border-width  solid black;
         }
+
         .single {
             width: 20%;
             .image();
             transform-origin: 0 100%;
         }
+
         .dual {
             width: 10%;
             transform-origin: 0 50%;
@@ -56,16 +64,18 @@ body {
                 height: 50%;
                 box-sizing: border-box;
                 border: solid black;
-                border-width: 10px 0 0 0;
+                border-width: ( @border-width * 2 ) 0 0 0;
                 .image();
             }
+
             > div:first-child {
                 border-top: 0;
             }
         }
 
         &:not(:first-child) {
-            margin-left: -100%;
+            @extra-width : 3 * @border-width;
+            margin-left: e( "calc( -100% - @{extra-width} )" );
 
             .single, .dual {
                 float: right;
