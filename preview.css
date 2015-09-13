@@ -26,7 +26,7 @@
 .frame .dual.disappear.preview div + div { background-color: lightgreen; }
 
 .frame .single.disappear.preview, .frame .dual.disappear.preview {
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
   transform-origin:0 100%;
   animation-play-state: running;
   animation-delay: 2s;
@@ -36,9 +36,7 @@
 }
 .frame .dual.disappear + *, .frame .single.disappear + *,
 .frame .dual.disappear + * + *, .frame .single.disappear + * + * {
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
   animation-play-state: running;
   animation-delay: 2s;
 }
-
-.single, .dual div { background: red; }
