@@ -4,9 +4,8 @@
   	
     // Variables
     var options = $.extend({
-          dummy_prop: function(){},
-          dummy_prop2: true,
-          photosource: images
+          photosource: images,
+          duration: 5000,
         }, options), 
         timeout, 
         where = this;
@@ -53,7 +52,7 @@
       where.append("<div class='loading'>Loading Photos...</div>");
 
       where.find(".single, .dual > div").each(addImage);
-      timeout = setTimeout(frame, 5000);
+      timeout = setTimeout(frame, options.duration);
     }
 
     // Add background image from source to jQuery element
@@ -89,7 +88,7 @@
   		disappear.addClass("disappear");
       where.trigger("st-animate", disappear);
 
-      timeout = setTimeout(frame, 5000);
+      timeout = setTimeout(frame, options.duration);
   	}
 
   	$(document.body).keydown(function(e){
