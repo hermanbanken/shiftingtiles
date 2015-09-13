@@ -92,10 +92,16 @@
       timeout = setTimeout(frame, 5000);
   	}
 
-  	$(document.body).keyup(function(e){
+  	$(document.body).keydown(function(e){
       //console.log("Key up");
-  		if(e.keyCode == 32) frame();
-      if(e.keyCode == 38) $(".shiftingtiles").toggleClass("leave");
+  		if(e.keyCode == 32){ 
+        frame();
+        e.preventDefault();
+        return false;
+      }
+      if(e.keyCode == 38){
+        $(".shiftingtiles").toggleClass("leave");
+      }
   	});
     
     // Chainability
