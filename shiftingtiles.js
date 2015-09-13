@@ -18,7 +18,7 @@
       //console.log("Animation end, removing node",this);
       // $(this).  this wasn't working, why? no idea
       $(this).css("display", "none").remove();
-      where.trigger("animate-after");
+      where.trigger("st-animate-after");
 
       return false;
     });
@@ -39,7 +39,7 @@
 
       if(images.bottom == images.length){
         images.bottom = 0;
-        where.trigger("galleryrestart");
+        where.trigger("st-galleryrestart");
       }
 
       return one;
@@ -83,11 +83,11 @@
   		var boxes = where.find(".single:not(:last-child), .dual:not(:last-child)");
   		var disappear = $(boxes.get( ~~(Math.random() * boxes.size()) ));
 
-      where.trigger("animate-before", disappear);
+      where.trigger("st-animate-before", disappear);
 
   		disappear.parent().append(addImage(0, disappear.clone()));
   		disappear.addClass("disappear");
-      where.trigger("animate", disappear);
+      where.trigger("st-animate", disappear);
 
       timeout = setTimeout(frame, 5000);
   	}
