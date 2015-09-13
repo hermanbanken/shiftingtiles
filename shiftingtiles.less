@@ -1,3 +1,37 @@
+/* Functions */
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+	-webkit-animation: @name @duration @delay @ease;
+	-moz-animation:    @name @duration @delay @ease;
+	-ms-animation:     @name @duration @delay @ease;
+}
+.animation-fill-mode (@mode) {
+	-webkit-animation-fill-mode: @mode;
+	-moz-animation-fill-mode:    @mode;
+	-ms-animation-fill-mode:     @mode;
+	-o-animation-fill-mode:      @mode;
+	animation-fill-mode:         @mode;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}
+.transform(@string){
+	-webkit-transform: @string;
+	-moz-transform:    @string;
+	-ms-transform: 	   @string;
+	-o-transform: 	   @string;
+}
+.transform-origin(@string){
+	-webkit-transform-origin: @string;
+	-moz-transform-origin:    @string;
+	-ms-transform-origin: 	  @string;
+	-o-transform-origin: 	  @string;
+}
+
+/* Implementation */
 body {
 	margin: 0;
 	padding: 0;
@@ -46,11 +80,11 @@ body {
 		.single { 
 			width: 20%; 
 			.image();
-			-webkit-transform-origin: 0 100%;
+			transform-origin(0 100%);
 		}
 		.dual { 
 			width: 10%;
-			-webkit-transform-origin: 0 50%;
+			transform-origin(0 50%);
 			> div {
 				width: 100%;
 				height: 50%;
@@ -70,42 +104,39 @@ body {
 			.single, .dual {
 				float: right;
 			}
-			.single { -webkit-transform-origin: 100% 0; }
-			.dual { -webkit-transform-origin: 100% 50%; }
+			.single { transform-origin(100% 0); }
+			.dual { transform-origin(100% 50%); }
 		}
 	}
 }
 
 .single.disappear {
-	-webkit-animation: disappear-single @disappear-duration;
-	-webkit-transform-origin: 100% 0;
-	-webkit-animation-fill-mode:forwards;
+	animation(disappear-single, @disappear-duration);
+	transform-origin(100% 0);
+	animation-fill-mode(forwards);
 }
 .dual.disappear {
-	-webkit-animation: disappear-dual @disappear-duration;
-	-webkit-transform-origin: 0 50%;
-	-webkit-animation-fill-mode:forwards;
+	animation(disappear-dual, @disappear-duration);
+	transform-origin(0 50%);
+	animation-fill-mode(forwards);
 }
 .dual.disappear + *, .single.disappear + * {
-	-webkit-animation: bounce (@disappear-duration/2);
-	-webkit-animation-delay: (@disappear-duration/2s);
+	animation(bounce, (@disappear-duration/2), (@disappear-duration/2s));
 }
 .dual.disappear + * + *, .single.disappear + * + * {
-	-webkit-animation: bounce (@disappear-duration/2);
-	-webkit-animation-delay: (@disappear-duration/2 + .05s);
+	animation(bounce, (@disappear-duration/2), (@disappear-duration/2s) + .05s);
 }
 .dual.disappear + * + * + *, .single.disappear + * + * + * {
-	-webkit-animation: bounce (@disappear-duration/2);
-	-webkit-animation-delay: (@disappear-duration/2 + .1s);
+	animation(bounce, (@disappear-duration/2), (@disappear-duration/2s) + .1s);
 }
 
 
 .shiftingtiles.leave .row {
-	-webkit-animation: leave-r 1s;
-	-webkit-animation-fill-mode: forwards;
+	animation(leave-r, 1s);
+	animation-fill-mode(forwards);
 	
 	&:first-child {
-		-webkit-animation: leave-l 1.5s;
+		animation(leave-l, 1.5s);
 	}
 }
 .shiftingtiles.left .row {
@@ -115,10 +146,10 @@ body {
 }
 
 .disappear-frames(@origwidth) {
-	0%   { -webkit-transform: scale(1); }
-	20%  { width: @origwidth; -webkit-transform: scale(.01); }
-	50%  { -webkit-transform: scale(0); width: 0%; }
-	100% { -webkit-transform: scale(0); width: 0%; border-width: 0; }
+	0%   { transform(scale(1)); }
+	20%  { transform(scale(.01)); width: @origwidth; }
+	50%  { transform(scale(0)); width: 0%; }
+	100% { transform(scale(0)); width: 0%; border-width: 0; }
 }
 .bounce {
 	0%  { margin: 0; }
@@ -130,9 +161,9 @@ body {
 	100% { margin: 0; }
 }
 .leave(@dir) {
-	0% { -webkit-transform: translate3d(0, 0, 0); }
-	99% { -webkit-transform: translate3d((@dir * 1920px), 0, 0); display: block; }
-	100% { -webkit-transform: translate3d((@dir * 1920px), 0, 0); display: none; }
+	0% {   transform(translate3d(0, 0, 0)); }
+	99% {  transform(translate3d((@dir * 1920px), 0, 0)); display: block; }
+	100% { transform(translate3d((@dir * 1920px), 0, 0)); display: none; }
 }
 
 @-webkit-keyframes disappear-single {.disappear-frames(20%); }
