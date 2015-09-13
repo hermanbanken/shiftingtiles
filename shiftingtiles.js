@@ -11,10 +11,10 @@
         timeout, 
         where = this;
     
-    where.on("webkitAnimationEnd", ".leave > .row", function(){
+    where.on("animationend webkitAnimationEnd oAnimationEnd", ".leave > .row", function(){
       $(this).parent().addClass("left").removeClass("leave");
     });
-    where.on("webkitAnimationEnd", ".disappear", function(){
+    where.on("animationend webkitAnimationEnd oAnimationEnd", ".disappear", function(){
       //console.log("Animation end, removing node",this);
       // $(this).  this wasn't working, why? no idea
       $(this).css("display", "none").remove();
