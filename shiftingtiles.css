@@ -40,6 +40,7 @@ body {
 .shiftingtiles > .row .single {
   width: 20%;
   background-size: cover;
+  background-position: center;
   /* background-image: to be filled in ;*/
   -webkit-transform-origin: 0 100%;
   -moz-transform-origin: 0 100%;
@@ -62,6 +63,7 @@ body {
   border: solid black;
   border-width: 10px 0 0 0;
   background-size: cover;
+  background-position: center;
   /* background-image: to be filled in ;*/
 }
 .shiftingtiles > .row .dual > div:first-child {
@@ -240,7 +242,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 5px;
+    margin: 0 3.75px;
   }
   100% {
     margin: 0;
@@ -278,7 +280,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 5px;
+    margin: 0 3.75px;
   }
   100% {
     margin: 0;
@@ -316,7 +318,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 5px;
+    margin: 0 3.75px;
   }
   100% {
     margin: 0;
@@ -354,7 +356,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 2.66666667px;
+    margin: 0 2px;
   }
   100% {
     margin: 0;
@@ -392,7 +394,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 2.66666667px;
+    margin: 0 2px;
   }
   100% {
     margin: 0;
@@ -430,7 +432,7 @@ body {
     margin: 0 1px;
   }
   96% {
-    margin: 0 2.66666667px;
+    margin: 0 2px;
   }
   100% {
     margin: 0;
