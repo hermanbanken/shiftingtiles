@@ -1,0 +1,49 @@
+@import "helpers.less";
+
+.disappear-frames(@origwidth) {
+  0%   { .transform(scale3d(1,1,1)); }
+  40%  { .transform(scale3d(.01,.01,1)); }
+  60%  { .transform(scale3d(0,0,1)); }
+  100% { .transform(scale3d(0,0,1)); }
+}
+
+.bounce(@bounce, @factor) {
+  10% { .transform(translateX(@factor * (-0       * @bounce + 0%  ))); }
+  30% { .transform(translateX(@factor * (-1       * @bounce + 40% ))); }
+  60% { .transform(translateX(@factor * (-0       * @bounce + 100%))); }
+  70% { .transform(translateX(@factor * (-1/3.5*2 * @bounce + 100%))); }
+  75% { .transform(translateX(@factor * (-1/3*2   * @bounce + 100%))); }
+  80% { .transform(translateX(@factor * (-1/3.5*2 * @bounce + 100%))); }
+  89% { .transform(translateX(@factor * (-1/20    * @bounce + 100%))); }
+  90% { .transform(translateX(@factor * (-0       * @bounce + 100%))); }
+  91% { .transform(translateX(@factor * (-1/20    * @bounce + 100%))); }
+  96% { .transform(translateX(@factor * (-1/4     * @bounce + 100%))); }
+  100%{ .transform(translateX(@factor * (-0       * @bounce + 100%))); }
+}
+
+.keyframes(bounce-equal-l;{ .bounce(@first-bounce, -1); });
+.keyframes(bounce-twice-l;{ .bounce(@first-bounce, -.5); });
+.keyframes(bounce-halve-l;{ .bounce(@first-bounce, -2); });
+
+.keyframes(bounce-equal-r;{ .bounce(@first-bounce, 1); });
+.keyframes(bounce-twice-r;{ .bounce(@first-bounce, .5); });
+.keyframes(bounce-halve-r;{ .bounce(@first-bounce, 2); });
+
+.keyframes(bounce-equal-l-small;{ .bounce(@first-bounce + @second-bounce, -1); });
+.keyframes(bounce-twice-l-small;{ .bounce(@first-bounce + @second-bounce, -.5); });
+.keyframes(bounce-halve-l-small;{ .bounce(@first-bounce + @second-bounce, -2); });
+
+.keyframes(bounce-equal-r-small;{ .bounce(@first-bounce + @second-bounce, 1); });
+.keyframes(bounce-twice-r-small;{ .bounce(@first-bounce + @second-bounce, .5); });
+.keyframes(bounce-halve-r-small;{ .bounce(@first-bounce + @second-bounce, 2); });
+
+.keyframes(bounce-equal-l-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, -1); });
+.keyframes(bounce-twice-l-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, -.5); });
+.keyframes(bounce-halve-l-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, -2); });
+
+.keyframes(bounce-equal-r-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, 1); });
+.keyframes(bounce-twice-r-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, .5); });
+.keyframes(bounce-halve-r-smallest;{ .bounce(@first-bounce + @second-bounce + @third-bounce, 2); });
+
+.keyframes(disappear-single;{ .disappear-frames(20%); });
+.keyframes(disappear-dual;{ .disappear-frames(10%); });

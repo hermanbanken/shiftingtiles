@@ -10,15 +10,11 @@
         timeout, 
         where = this;
     
-    where.on("animationend webkitAnimationEnd oAnimationEnd", ".leave > .row", function(){
-      $(this).parent().addClass("left").removeClass("leave");
-    });
-    where.on("animationend webkitAnimationEnd oAnimationEnd", ".disappear", function(){
-      //console.log("Animation end, removing node",this);
+    where.on("animationend webkitAnimationEnd oAnimationEnd", ".disappear", function(e){
+      console.log("Animation end, removing node",this,e);
       // $(this).  this wasn't working, why? no idea
-      $(this).css("display", "none").remove();
-      where.trigger("st-animate-after");
-
+      $(this).remove();
+      // where.trigger("st-animate-after");
       return false;
     });
 
@@ -38,7 +34,7 @@
 
       if(images.bottom == images.length){
         images.bottom = 0;
-        where.trigger("st-galleryrestart");
+        //fwhere.trigger("st-galleryrestart");
       }
 
       return one;
@@ -82,11 +78,11 @@
   		var boxes = where.find(".single:not(:last-child), .dual:not(:last-child)");
   		var disappear = $(boxes.get( ~~(Math.random() * boxes.size()) ));
 
-      where.trigger("st-animate-before", disappear);
+      // where.trigger("st-animate-before", disappear);
 
   		disappear.parent().append(addImage(0, disappear.clone()));
   		disappear.addClass("disappear");
-      where.trigger("st-animate", disappear);
+      // where.trigger("st-animate", disappear);
 
       timeout = setTimeout(frame, options.duration);
   	}
@@ -97,9 +93,6 @@
         frame();
         e.preventDefault();
         return false;
-      }
-      if(e.keyCode == 38){
-        $(".shiftingtiles").toggleClass("leave");
       }
   	});
     
