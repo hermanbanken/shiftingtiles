@@ -18,6 +18,7 @@
 .frame div { float: left; }
 .frame .preview { width: 100px; height: 100px; background: green; }
 .frame .rest { width: 100px; height: 100px; background: red; }
+.frame .dual, .frame .rest.dual { width: 50px; height: 100px; }
 .frame .rest + .rest { background: blue; }
 .frame .dual.disappear.preview div {
   width: 100%;
